@@ -1,36 +1,46 @@
+#decalring a checkMethod
+def checkMethod(letter, number)
+  #declaring and initializing virables
+  index = 0
+  letters =("a".."z").to_a
+  letters_upCased = ("A".."Z").to_a
+  new_letter = ""
+  #finding and replacing the letter to the new letter
+  if letter == " "
+    new_letter = " "
+  elsif letter.class == Numeric
+    new_letter = letter
+  else
+    if letters.include?(letter)
+      index = letters.index(letter) + number
+      if index > 25
+        index = 26 - index
+      end
+      new_letter = letters[index]
+    elsif letters_upCased.include?(letter)
+      index = letters_upCased.index(letter) + number
+      if index > 25
+        index = 26 - index
+      end
+      new_letter = letters_upCased[index]
+    else
+      new_letter = letter
+    end
+  end
+  #returning the new letter
+    return new_letter 
+  end
+
 # declaration of our method
 def caesar_cipher(string, number)
-# declaring and initializing our variables 
-  letters =("a".."z").to_a
+  # declaring and initializing our variables 
   newString = []
-
-# first we loop our string letters by spliting them 
-  string.split("").each {|letter_in_string|
-# then we loop our letters array to find the mach
-    letters.each {|letter_in_letters| 
-# then if we find a much we change it with another letter and store it in a new array 
-      if letter_in_letters == letter_in_string
-        index = letters.index(letter_in_letters) + number
-        if index > 25
-          index = index - 25
-        end
-        newString.push(letters[index])
-      elsif letter_in_letters.upcase == letter_in_string
-        index = letters.index(letter_in_letters) + number
-        if index > 25
-          index = index - 25
-        end
-        newString.push(letters[index].upcase)
-      else
-        newString.push(letter_in_string)
-        break
-      end
-        }
-  }
-# and lastly we return our new encrypted arry 
+  #looping and calling checkMethod
+  string.split("").each do |item|
+    newString.push(checkMethod(item, number))
+  end
+  #retruning the new String
   return newString.join
-  
 end
-
-# we call the method with our parameters
-puts caesar_cipher("abc Just TEst 3434", 1)
+  # we call the method with our parameters
+  puts caesar_cipher("Hello There you !!12 3123  ", 3)
