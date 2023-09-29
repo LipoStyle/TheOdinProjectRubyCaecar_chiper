@@ -1,30 +1,22 @@
-# declaring and initializing our test aray
-test = [17,3,6,9,15,8,6,1,10]
-
-#declaring our method  
-def stock_picker(pinakas)
-#declaring and initializing to 0 our max income from buys and sales, same as the array of their pairs
-megisto_kerdos = 0
-pinakasKerdous = []
-
-  # looping the array for first time and setting  the buying day
-pinakas.each {|agora|
- mera_agoras = agora
-  # setting the parameter of the second loop to sell after the buy day and not some other day and starting a second loop from the buyiing time 
- pwlhsh =  pinakas.index(agora)
-  for x in (pwlhsh .. pinakas.length - 1) do
-    # setting the sell day
-    mera_polhshs = pinakas[x]
-  # finding the the income of every sale transaction 
-    prosorino_kerdos = mera_polhshs - mera_agoras
-    # if the max income is lower than the day trnasacion we make it max income and then putting the pairs of that transaction to our array 
-    if megisto_kerdos < prosorino_kerdos
-      megisto_kerdos = prosorino_kerdos
-      pinakasKerdous = [pinakas.index(agora), x]
+# declaring the method
+def stock_picker(stock_prices)
+  # declaring the array of income.
+  profit_income = []
+  max_profit = 0
+  # looping through the prices to find the best combinationg of buying and selling 
+  stock_prices.each do |b_item|
+    for s_item in (stock_prices.index(b_item) .. stock_prices.length - 1)
+     prifit = stock_prices[s_item] - b_item
+    #  cheking for the profit and if its max we store the days in the array
+     if prifit > max_profit
+      max_profit = prifit
+      profit_income = [stock_prices.index(b_item), s_item]
+     end
     end
   end
-}
-  # and in the end we retrourn the array of the pairs
-return pinakasKerdous
+  # returning the array with the max prifit buy sell day
+  return profit_income
 end
-p stock_picker(test)
+
+# calling the method
+p stock_picker([17,3,6,9,15,8,6,1,10])
