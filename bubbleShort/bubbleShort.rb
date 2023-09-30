@@ -1,29 +1,21 @@
-#declaring the array that we will sort
-test = [4,3,78,2,0,2]
-# print an unsorted array
-p test
-# declaring the method that we will use
-def bubble_sort(arra_to_be_sorted)
-  # here we loop the array until it its sorted
-  loop do
-    # we set the condtion of swaps t o fasle so that means that the array is sorted and thats our end condition
-    swap = false
-    # now we loop our array  and mayke comparisons to make it sorted
-    for i in 1..arra_to_be_sorted.length-1 do
-      if arra_to_be_sorted[i] < arra_to_be_sorted[i-1]
-        temp = arra_to_be_sorted[i]
-        arra_to_be_sorted[i] = arra_to_be_sorted[i-1]
-        arra_to_be_sorted[i-1] = temp
-        # and if we make a change we make the swap variale to true so the array is not yet sorted
-        swap = true
-      end
+def bubble_short(array_of_items)
+    loop do
+        swap = false
+        # looping the array and make swaps possitioning wherever it needs
+        for i in (1 ..array_of_items.length-1) do
+            if array_of_items[i - 1] > array_of_items[i]
+                array_of_items[i -1], array_of_items[i] = array_of_items[i], array_of_items[i -1]
+                swap = true
+            end
+        end
+        # if swap equals false that means that the array is shroted and no swaps were made so we break
+        if swap == false
+            break
+        end
     end
-    if swap == false
-      break
-  end
+
+    # returning the shorted array
+    return array_of_items
 end
-end
-# here we call our method
-  bubble_sort(test)
-# and here we test the outcome
-p test
+
+p bubble_short([1,21,1,4,67,1,0,5,3,8,6,9,12,6,85,3,2,0])
